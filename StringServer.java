@@ -1,29 +1,23 @@
 import java.io.IOException;
 import java.net.URI;
-import java.util.ArrayList;
+
 
 
 class Handler implements URLHandler{
-    ArrayList<String> previousStrings = new ArrayList<String>();
-    int size = 0;
     String previousMessage = "";
   
-    public String handleRequest(URI url, String messages) {
-  
+    public String handleRequest(URI url) {
+        
         if (url.getPath().contains("/add-message")) {
             String []strings = url.getQuery().split("=");
             if (strings[0].equals("s")) {
-                messages = previousMessage + strings[1] + "\n";
-                this.previousMessage = messages;
-                /* 
-                previousStrings.add(strings[1]);
-                size++;
-                for (int i = 0; i < size; i++) {
-                    previousMessage = previousMessage + previousStrings.get(i) + "\n";
-                */
+                String message = strings[1] + "\n";
                 
-                }
-            return messages; 
+                String newMessage = previousMessage.concat(message);
+                System.out.println(newMessage);
+                return newMessage;
+            }
+            
         }
             
         return "404 Not Found!";
