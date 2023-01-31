@@ -36,5 +36,6 @@ class NumberServer {
         int port = Integer.parseInt(args[0]);
 
         Server.start(port, new Handler());
+        
     }
 }

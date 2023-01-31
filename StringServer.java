@@ -7,15 +7,13 @@ class Handler implements URLHandler{
     String previousMessage = "";
   
     public String handleRequest(URI url) {
-        
+    
         if (url.getPath().contains("/add-message")) {
             String []strings = url.getQuery().split("=");
             if (strings[0].equals("s")) {
                 String message = strings[1] + "\n";
-                
-                String newMessage = previousMessage.concat(message);
-                System.out.println(newMessage);
-                return newMessage;
+                this.previousMessage = previousMessage.concat(message);
+                return previousMessage;
             }
             
         }
